@@ -1,0 +1,39 @@
+<div class="col-md-5 col-md-offset-3">
+<%= simple_form_for @post do |f| %>
+    <% if @post.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:" %>
+          </h2>
+          <ul>
+            <% @post.errors.full_messages.each do |msg| %>
+                <li>
+                  <%= msg %>
+                </li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.input :title %>
+    </div>
+
+    <div class="form-group"> <b>Author</b> </div>
+    <div class="form-group">
+      <%= f.text_field :email, value: current_user.email, vaclass: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.input :body, :as => :ckeditor, input_html: {:ckeditor => {:toolbar => 'FULL'}}, class: "form-control" %>
+    </div>
+
+    <div class="form-group"> <b><%= t(:attention) %></b> </div>
+
+    <div class="form-group">
+      <%= f.button :submit %>
+    </div>
+
+    <%= link_to t(:back), root_path %> <br />
+<% end %>
+</div>

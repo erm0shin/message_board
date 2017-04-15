@@ -1,0 +1,22 @@
+<div class="container">
+<div class="text-center">
+<!-- <div class="col-sm-11 col-xs-12 blog-content"> -->
+  <h2 class="text-center"><%= @post.title %></h2>
+  <h5 class="text-center"><%= @post.created_at.strftime('%b %d, %Y') %></h5>
+
+  <!-- <div>Author: <%= @post.email %></div> -->
+  <div class="text-center">
+    <%= raw @post.body %>
+  </div>
+  <hr />
+  <button onclick="show_author('<%= @post.email %>')">Show author</button><br />
+  <div id="result"></div><br />
+
+  <% if @post.email == current_user.email %>
+    <%= link_to "Edit post", edit_post_path(@post) %>
+    <%= link_to "Delete post", @post, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+  <br /><br />
+  <%= link_to "BACK TO THE LIST OF POSTS", root_path %> <br />
+</div>
+</div>

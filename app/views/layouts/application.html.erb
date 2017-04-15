@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- <style>
+      body {
+        background: url('<%= asset_path 'bundesliga.jpg' %>') right bottom no-repeat;
+        margin-right: 200px;
+      }
+    </style> -->
+  </head>
+
+  <body>
+  <!-- <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p> -->
+
+  <% if user_signed_in? %>
+      <span> Hello, <%= current_user.email %></span>
+      <%= link_to t(:sign_in), destroy_user_session_path, :method => :delete %>
+  <% else %>
+      <%= link_to t(:sign_out), new_user_session_path %> или <%= link_to t(:sign_up), new_user_registration_path %>
+  <% end %>
+
+  <%= yield %>
+
+  </body>
+</html>

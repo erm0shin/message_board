@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="text-center">
+    <strong> <p><%= t(:hello1) %></p><br />
+    <p><%= t(:hello2) %></p><br />
+      <p><%= t(:hello3) %></p></strong><br />
+  </div>
+  <div class="col-sm-10 col-sm-offset-1 col-xs-12 blog-content">
+    <div class="text-center">
+      <u><strong><%= link_to t(:create), new_post_path %></strong></u>
+    </div><br /><br />
+    <div class="text-center">
+      <u><strong><p><%= t(:article) %></p></strong></u>
+    </div>
+    <% @posts.each do |post| %>
+        <div class="col-xs-12">
+          <div class="col-md-6 col-md-offset-4">
+          <div class="rect">
+          <div class="text-center">
+            <!-- <h2><%= post.title %></h2> -->
+            <% title = post.title %>
+            <u><strong><%= link_to title,  post_path(post) %> <br /></strong></u>
+            <h6><%= post.created_at.strftime('%b %d, %Y') %></h6>
+          </div>
+
+          <div class="text-center">
+            <% if post.email == current_user.email %>
+              <%= link_to t(:edit), edit_post_path(post) %>
+              <%= link_to t(:delete), post, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+          </div>
+          <br />
+          <br />
+        </div>
+        </div>
+        </div>
+    <% end %>
+  </div>
+</div>
